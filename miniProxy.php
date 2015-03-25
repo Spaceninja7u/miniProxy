@@ -308,7 +308,11 @@ if (stripos($contentType, "text/html") !== false) {
   echo "<!-- Proxified page constructed by miniProxy -->\n" . $doc->saveHTML();
 } else if (stripos($contentType, "text/css") !== false) { //This is CSS, so proxify url() references.
   echo proxifyCSS($responseBody, $url);
-} else { //This isn't a web page or CSS, so serve unmodified through the proxy with the correct headers (images, JavaScript, etc.)
-  header("Content-Length: " . strlen($responseBody));
-  echo $responseBody;
+} else {
+    //for the use case in the fork, assume response is an RSS XML feed and convert it to JSON
+    $xml = simplexml_load_string($responseBody);
+    $json = json_encode($xml);
+    header("Content-Length: " . strlen($json));
+    echo $json;
+
 }

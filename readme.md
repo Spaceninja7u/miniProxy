@@ -1,8 +1,15 @@
+
+
 # miniProxy
 
 *by Joshua Dick*
 
 *[https://github.com/joshdick/miniProxy][1]*
+
+
+## About this fork
+
+this fork modifies the original to convert an RSS feed to JSON.
 
 ---
 
